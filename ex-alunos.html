@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrevistas com Ex-alunos - Manual de Sobrevivência ao Ensino Médio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --azul-claro: #7ec8e3;
+    --azul-escuro: #1b3a57;
+    --branco: #ffffff;
+    --azul-medio: #4a90b8;
+    --bg-suave: #f4f9fc;
+    --texto: #2c3e4a;
+    --texto-suave: #6b7d8a;
+    --borda: #e2edf3;
+    --fonte-titulo: 'Merriweather', Georgia, serif;
+    --fonte-corpo: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--fonte-corpo); background-color: var(--bg-suave); color: var(--texto); line-height: 1.6; }
+a { color: inherit; }
+
+.topbar { background-color: var(--azul-escuro); color: rgba(255,255,255,0.85); font-size: 0.8rem; }
+.topbar-inner { max-width: 1100px; margin: 0 auto; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+.topbar-info { letter-spacing: 0.3px; }
+.topbar-home { text-decoration: none; color: var(--branco); font-weight: 600; font-size: 0.8rem; transition: opacity 0.25s ease; }
+.topbar-home:hover { opacity: 0.75; }
+
+.site-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); position: relative; overflow: hidden; }
+.site-header::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: repeating-linear-gradient(45deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 10px, transparent 10px, transparent 20px); pointer-events: none; }
+.header-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 32px 20px 24px 20px; display: flex; align-items: center; gap: 18px; }
+
+.brand-logo-img { width: 64px; height: 64px; min-width: 64px; border-radius: 50%; object-fit: cover; background-color: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.5); box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
+
+.brand-text h1 { font-family: var(--fonte-titulo); font-size: 1.9rem; font-weight: 900; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); margin-bottom: 4px; }
+.brand-text p { font-size: 0.95rem; color: rgba(255,255,255,0.85); }
+
+.site-nav { position: relative; z-index: 1; background-color: rgba(0,0,0,0.12); display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 0 20px; }
+.nav-item { text-decoration: none; color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.92rem; padding: 14px 18px; position: relative; transition: color 0.25s ease; letter-spacing: 0.3px; }
+.nav-item::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; background-color: var(--branco); transition: all 0.25s ease; transform: translateX(-50%); }
+.nav-item:hover { color: var(--branco); }
+.nav-item:hover::after { width: 60%; }
+.nav-item.ativo { color: var(--branco); }
+.nav-item.ativo::after { width: 60%; }
+
+.breadcrumb { max-width: 1050px; margin: 22px auto 0 auto; padding: 0 20px; font-size: 0.85rem; color: var(--texto-suave); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.breadcrumb a { text-decoration: none; color: var(--azul-medio); font-weight: 600; transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--azul-escuro); }
+.breadcrumb .atual { color: var(--texto-suave); }
+
+.artigo-container { max-width: 1050px; margin: 10px auto 60px auto; padding: 0 20px; }
+.artigo-box { background-color: var(--branco); border-radius: 18px; padding: 48px; box-shadow: 0 6px 30px rgba(27,58,87,0.08); }
+.artigo-categoria { display: inline-block; background-color: rgba(126,200,227,0.22); color: var(--azul-escuro); border: 1px solid var(--azul-claro); font-size: 0.72rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 18px; }
+.artigo-titulo { font-family: var(--fonte-titulo); font-size: 2.1rem; font-weight: 900; color: var(--azul-escuro); line-height: 1.3; margin-bottom: 14px; }
+.artigo-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: var(--texto-suave); font-size: 0.88rem; margin-bottom: 28px; }
+.artigo-meta-row .dot { color: var(--azul-claro); }
+
+.divisor { text-align: center; color: var(--azul-claro); font-size: 1.2rem; margin: 0 0 28px 0; position: relative; }
+.divisor::before, .divisor::after { content: ""; display: inline-block; width: 60px; height: 1px; background-color: var(--borda); vertical-align: middle; margin: 0 14px; }
+
+.artigo-intro { font-size: 1.1rem; color: #333; line-height: 1.85; margin-bottom: 36px; }
+
+.entrevistado { margin-bottom: 44px; padding-bottom: 36px; border-bottom: 1px solid var(--borda); }
+.entrevistado:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.entrevistado-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.entrevistado-avatar { width: 54px; height: 54px; min-width: 54px; border-radius: 50%; background: linear-gradient(135deg, var(--azul-medio), var(--azul-escuro)); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--branco); font-weight: 700; }
+.entrevistado-nome { font-family: var(--fonte-titulo); font-size: 1.2rem; color: var(--azul-escuro); font-weight: 700; }
+.entrevistado-info { font-size: 0.85rem; color: var(--texto-suave); }
+
+.pergunta { font-weight: 700; color: var(--azul-escuro); margin-bottom: 6px; margin-top: 18px; }
+.pergunta::before { content: "P: "; color: var(--azul-medio); }
+.resposta { color: #333; margin-bottom: 4px; padding-left: 4px; }
+.resposta::before { content: "R: "; color: var(--texto-suave); font-weight: 700; }
+
+.moral { background-color: var(--bg-suave); padding: 20px 24px; border-radius: 10px; border-left: 4px solid var(--azul-medio); margin-top: 32px; font-size: 1.05rem; color: #333; }
+.moral strong { color: var(--azul-escuro); }
+
+.artigo-voltar { text-align: center; margin-top: 26px; }
+.artigo-voltar a { text-decoration: none; color: var(--azul-medio); font-weight: 600; font-size: 0.92rem; transition: color 0.25s ease; }
+.artigo-voltar a:hover { color: var(--azul-escuro); }
+
+.site-footer { background-color: var(--azul-escuro); color: rgba(255,255,255,0.85); margin-top: 60px; }
+.footer-columns { max-width: 1100px; margin: 0 auto; padding: 44px 20px 30px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+.footer-col h3 { font-family: var(--fonte-titulo); color: var(--branco); font-size: 1.05rem; margin-bottom: 14px; }
+.footer-col p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 0.9rem; transition: color 0.25s ease; }
+.footer-col a:hover { color: var(--branco); }
+.footer-bottom { text-align: center; padding: 16px 20px; background-color: rgba(0,0,0,0.15); font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 700px) {
+    .header-inner { flex-direction: column; text-align: center; padding: 26px 20px 20px 20px; }
+    .brand-text h1 { font-size: 1.5rem; }
+    .artigo-box { padding: 26px; }
+    .artigo-titulo { font-size: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        <span class="topbar-info">Colégio Dinâmico • 3º Ano • 2026</span>
+        <a href="index.html" class="topbar-home">🏠 Início</a>
+    </div>
+</div>
+
+<header class="site-header">
+    <div class="header-inner">
+        <img src="logo.jpg" alt="Logo" class="brand-logo-img">
+        <div class="brand-text">
+            <h1>Manual de Sobrevivência ao Ensino Médio</h1>
+            <p>Guia essencial para encarar (e sobreviver a) mais um ano letivo!</p>
+        </div>
+    </div>
+    <nav class="site-nav">
+        <a href="dicas.html" class="nav-item">Dicas para o Ensino Médio</a>
+        <a href="historias.html" class="nav-item">Histórias da Turma</a>
+        <a href="entrevistas.html" class="nav-item ativo">Entrevistas</a>
+    </nav>
+</header>
+
+<nav class="breadcrumb">
+    <a href="index.html">Início</a> <span>/</span> <a href="entrevistas.html">Entrevistas</a> <span>/</span> <span class="atual">Ex-alunos</span>
+</nav>
+
+<div class="artigo-container">
+    <div class="artigo-box reveal">
+
+        <span class="artigo-categoria">Ex-alunos</span>
+        <h1 class="artigo-titulo">Quem já passou por aqui: entrevistas com ex-alunos</h1>
+        <div class="artigo-meta-row">
+            <span>✍️ Entrevistas</span><span class="dot">•</span>
+            <span>Pessoas que já estudaram no colégio</span><span class="dot">•</span>
+            <span>⏱ 7 min de leitura</span><span class="dot">•</span>
+            <span>Página em atualização</span>
+        </div>
+        <div class="divisor">✦</div>
+
+        <p class="artigo-intro">
+            O tempo passa, a gente se forma, segue a vida... mas o Ensino Médio deixa marcas (boas e nem
+            tão boas) que a gente carrega por anos. Conversamos com pessoas que já estudaram no colégio
+            há algum tempo e perguntamos: olhando para trás, o que mudaria? O que não trocaria por nada?
+            E o que diriam para quem ainda está nessa fase? Confira os relatos abaixo.
+        </p>
+
+        <!-- ENTREVISTADO 1 -->
+        <div class="entrevistado">
+            <div class="entrevistado-header">
+                <div class="entrevistado-avatar">?</div>
+                <div>
+                    <div class="entrevistado-nome">Aline</div>
+                    <div class="entrevistado-info">Professora do Dinâmico</div>
+                </div>
+            </div>
+
+            <p class="pergunta">O que você gostaria de ter aprendido antes?</p>
+            <p class="resposta">Dirigir. Tenho medo, por causa de acidente e assalto.</p>
+
+            <p class="pergunta">Alguma dificuldade que passou no caminho?</p>
+            <p class="resposta">Dificuldade financeira, passei por uma certa "barra", 
+                mas nunca deixei que isso nos parasse — sempre enfrentamos as dificuldades.</p>
+
+            <p class="pergunta">Se arrepende de algo que fez na escola?</p>
+            <p class="resposta">Nunca tive problema, sempre fui exemplar.</p>
+            
+            <p class="pergunta">Como chegou na ideia do que queria fazer da vida?</p>
+            <p class="resposta">Sempre quis ser professora, desde os 5 anos de idade.</p>
+
+            <p class="pergunta">Você gosta do que trabalha?</p>
+            <p class="resposta">Sim, amo, embora esteja difícil hoje em dia.</p>
+
+
+        </div>
+
+        <div class="moral">
+            <strong>Para refletir:</strong> quem já passou pelo Ensino Médio sempre tem uma visão diferente
+            sobre essa fase — e, às vezes, só entendemos certas coisas quando já estamos do outro lado. 💙
+        </div>
+
+    </div>
+
+    <div class="artigo-voltar">
+        <a href="entrevistas.html">← Voltar para Entrevistas</a>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-columns">
+        <div class="footer-col">
+            <h3>Sobre o projeto</h3>
+            <p>Um guia criado pela turma do 3º ano para ajudar colegas a atravessarem o Ensino Médio com mais leveza, organização e boas memórias.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Links rápidos</h3>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="dicas.html">Dicas</a></li>
+                <li><a href="historias.html">Histórias</a></li>
+                <li><a href="entrevistas.html">Entrevistas</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Créditos</h3>
+            <p>Feito com 💙 pela turma do 3º ano — Ensino Médio 2026, Colégio Dinâmico.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Manual de Sobrevivência ao Ensino Médio</p>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>

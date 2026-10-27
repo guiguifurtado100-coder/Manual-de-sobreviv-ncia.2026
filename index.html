@@ -5,282 +5,179 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manual de Sobrevivência ao Ensino Médio</title>
 <style>
-    :root {
-        --azul-claro: #7ec8e3;
-        --azul-escuro: #1b3a57;
-        --branco: #ffffff;
-        --azul-medio: #4a90b8;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+:root {
+    --azul-claro: #7ec8e3;
+    --azul-escuro: #1b3a57;
+    --branco: #ffffff;
+    --azul-medio: #4a90b8;
+    --bg-suave: #f4f9fc;
+    --texto: #2c3e4a;
+    --texto-suave: #6b7d8a;
+    --borda: #e2edf3;
+    --fonte-titulo: 'Merriweather', Georgia, serif;
+    --fonte-corpo: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--fonte-corpo); background-color: var(--bg-suave); color: var(--texto); line-height: 1.6; }
+a { color: inherit; }
 
-    body {
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: linear-gradient(135deg, var(--branco) 0%, #e8f4f8 100%);
-        color: var(--azul-escuro);
-        line-height: 1.6;
-    }
+.topbar { background-color: var(--azul-escuro); color: rgba(255,255,255,0.85); font-size: 0.8rem; }
+.topbar-inner { max-width: 1100px; margin: 0 auto; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+.topbar-info { letter-spacing: 0.3px; }
+.topbar-home { text-decoration: none; color: var(--branco); font-weight: 600; font-size: 0.8rem; transition: opacity 0.25s ease; }
+.topbar-home:hover { opacity: 0.75; }
 
-    header {
-        background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
-        color: var(--branco);
-        padding: 50px 20px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        position: relative;
-        overflow: hidden;
-    }
+.site-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); position: relative; overflow: hidden; }
+.site-header::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: repeating-linear-gradient(45deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 10px, transparent 10px, transparent 20px); pointer-events: none; }
+.header-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 32px 20px 24px 20px; display: flex; align-items: center; gap: 18px; }
 
-    header::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: repeating-linear-gradient(
-            45deg,
-            rgba(255,255,255,0.05),
-            rgba(255,255,255,0.05) 10px,
-            transparent 10px,
-            transparent 20px
-        );
-        animation: slide 20s linear infinite;
-    }
+.brand-logo-img { width: 64px; height: 64px; min-width: 64px; border-radius: 50%; object-fit: cover; background-color: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.5); box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
 
-    @keyframes slide {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(50px, 50px); }
-    }
+.brand-text h1 { font-family: var(--fonte-titulo); font-size: 1.9rem; font-weight: 900; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); margin-bottom: 4px; }
+.brand-text p { font-size: 0.95rem; color: rgba(255,255,255,0.85); }
 
-    header h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        position: relative;
-        z-index: 1;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
+.site-nav { position: relative; z-index: 1; background-color: rgba(0,0,0,0.12); display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 0 20px; }
+.nav-item { text-decoration: none; color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.92rem; padding: 14px 18px; position: relative; transition: color 0.25s ease; letter-spacing: 0.3px; }
+.nav-item::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; background-color: var(--branco); transition: all 0.25s ease; transform: translateX(-50%); }
+.nav-item:hover { color: var(--branco); }
+.nav-item:hover::after { width: 60%; }
+.nav-item.ativo { color: var(--branco); }
+.nav-item.ativo::after { width: 60%; }
 
-    header p {
-        font-size: 1.2rem;
-        color: var(--azul-claro);
-        position: relative;
-        z-index: 1;
-    }
+main { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+.painel { background-color: var(--branco); margin-bottom: 40px; padding: 36px; border-radius: 16px; box-shadow: 0 4px 22px rgba(27,58,87,0.07); border-top: 4px solid var(--azul-claro); }
+.painel h2 { font-family: var(--fonte-titulo); color: var(--azul-escuro); font-size: 1.7rem; margin-bottom: 14px; }
+.intro-texto { font-size: 1.02rem; color: var(--texto-suave); margin-bottom: 26px; padding-bottom: 22px; border-bottom: 1px solid var(--borda); }
 
-    nav {
-        background-color: var(--azul-claro);
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        padding: 15px;
-        gap: 15px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px; margin-top: 24px; }
+.card-simples { background-color: var(--bg-suave); border: 1px solid var(--borda); border-radius: 14px; padding: 26px 22px; text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card-simples:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(27,58,87,0.1); }
+.card-icone { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--azul-claro), var(--azul-medio)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 14px; }
+.card-simples h3 { font-family: var(--fonte-titulo); color: var(--azul-escuro); font-size: 1.15rem; margin-bottom: 8px; }
+.card-simples p { color: var(--texto-suave); font-size: 0.95rem; }
 
-    nav a {
-        color: var(--azul-escuro);
-        text-decoration: none;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 25px;
-        transition: all 0.3s ease;
-        background-color: var(--branco);
-    }
+.site-footer { background-color: var(--azul-escuro); color: rgba(255,255,255,0.85); margin-top: 60px; }
+.footer-columns { max-width: 1100px; margin: 0 auto; padding: 44px 20px 30px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+.footer-col h3 { font-family: var(--fonte-titulo); color: var(--branco); font-size: 1.05rem; margin-bottom: 14px; }
+.footer-col p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 0.9rem; transition: color 0.25s ease; }
+.footer-col a:hover { color: var(--branco); }
+.footer-bottom { text-align: center; padding: 16px 20px; background-color: rgba(0,0,0,0.15); font-size: 0.8rem; color: rgba(255,255,255,0.6); }
 
-    nav a:hover {
-        background-color: var(--azul-escuro);
-        color: var(--branco);
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-    nav a.ativo {
-        background-color: var(--azul-escuro);
-        color: var(--branco);
-    }
-
-    main {
-        max-width: 1000px;
-        margin: 40px auto;
-        padding: 0 20px;
-    }
-
-    section {
-        background-color: var(--branco);
-        margin-bottom: 40px;
-        padding: 35px;
-        border-radius: 15px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        border-left: 6px solid var(--azul-claro);
-        transition: transform 0.3s ease;
-    }
-
-    section:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    }
-
-    section h2 {
-        color: var(--azul-escuro);
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    section h2::before {
-        content: "";
-        width: 8px;
-        height: 30px;
-        background-color: var(--azul-claro);
-        border-radius: 4px;
-    }
-
-    .intro-texto {
-        font-size: 1.05rem;
-        color: #555;
-        margin-bottom: 25px;
-        padding-bottom: 20px;
-        border-bottom: 2px dashed var(--azul-claro);
-    }
-
-    section p, section li {
-        color: #444;
-        margin-bottom: 12px;
-    }
-
-    section ul {
-        padding-left: 25px;
-    }
-
-    section li {
-        margin-bottom: 10px;
-    }
-
-    .destaque {
-        background-color: #eaf6fb;
-        padding: 15px;
-        border-radius: 10px;
-        border-left: 4px solid var(--azul-medio);
-        margin: 15px 0;
-        font-style: italic;
-    }
-
-    .card-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-top: 20px;
-    }
-
-    .card {
-        background-color: #f0f9fc;
-        padding: 20px;
-        border-radius: 10px;
-        border: 2px solid var(--azul-claro);
-        transition: all 0.3s ease;
-    }
-
-    .card:hover {
-        background-color: var(--azul-claro);
-        transform: scale(1.03);
-    }
-
-    .card h3 {
-        color: var(--azul-escuro);
-        margin-bottom: 10px;
-    }
-
-    footer {
-        background-color: var(--azul-escuro);
-        color: var(--branco);
-        text-align: center;
-        padding: 25px;
-        margin-top: 50px;
-    }
-
-    footer p {
-        opacity: 0.9;
-    }
-
-    .emoji {
-        font-size: 1.3rem;
-        margin-right: 8px;
-    }
-
-    .logo-canto {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--branco);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+@media (max-width: 700px) {
+    .header-inner { flex-direction: column; text-align: center; padding: 26px 20px 20px 20px; }
+    .brand-text h1 { font-size: 1.5rem; }
+    .painel { padding: 24px; }
 }
 </style>
 </head>
 <body>
-<header>
-    <img src="logo.jpg" alt="Logo" class="logo-canto">
-    <h1>📘 Manual de Sobrevivência ao Ensino Médio</h1>
-    <p>Guia essencial para encarar (e sobreviver a) mais um ano letivo!</p>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        <span class="topbar-info">Colégio Dinâmico • 3º Ano • 2026</span>
+        <a href="index.html" class="topbar-home">🏠 Início</a>
+    </div>
+</div>
+
+<header class="site-header">
+    <div class="header-inner reveal">
+        <img src="logo.jpg" alt="Logo" class="brand-logo-img">
+        <div class="brand-text">
+            <h1>Manual de Sobrevivência ao Ensino Médio</h1>
+            <p>Guia essencial para encarar (e sobreviver a) mais um ano letivo!</p>
+        </div>
+    </div>
+    <nav class="site-nav">
+        <a href="dicas.html" class="nav-item">Dicas para o Ensino Médio</a>
+        <a href="historias.html" class="nav-item">Histórias da Turma</a>
+        <a href="entrevistas.html" class="nav-item">Entrevistas</a>
+    </nav>
 </header>
 
-<nav>
-    <a href="dicas.html">Dicas para o Ensino Médio</a>
-    <a href="historias.html">Histórias da Turma</a>
-    <a href="entrevistas.html">Entrevistas e Relatos</a>
-</nav>
-
 <main>
-    <section>
+    <section class="painel reveal">
         <h2>👋 Bem-vindo(a)!</h2>
         <p class="intro-texto">
-            Este é o Manual de Sobrevivência ao Ensino Médio, criado pela turma para ajudar 
-            todos os alunos a passarem por essa fase com mais leveza e informação. Navegue 
-            pelos menus acima e descubra dicas valiosas, histórias divertidas e entrevistas 
+            Este é o Manual de Sobrevivência ao Ensino Médio, criado pela turma para ajudar
+            todos os alunos a passarem por essa fase com mais leveza e informação. Navegue
+            pelos menus acima e descubra dicas valiosas, histórias divertidas e entrevistas
             inspiradoras com quem já viveu essa jornada!
         </p>
-        <div class="card-container">
-            <div class="card">
-                <h3>💡 Dicas</h3>
-                <p>Sabemos que o Ensino Médio pode ser desafiador, cheio de provas, trabalhos e decisões importantes 
-            para o futuro. Pensando nisso, reunimos aqui as dicas mais valiosas, testadas e aprovadas pelos 
-            próprios alunos do 3º ano do Ensino Médio do Colégio Dinâmico. São conselhos práticos sobre 
-            organização, estudos e vida escolar que fariam toda a diferença se tivéssemos sabido antes!.</p>
+        <div class="card-grid">
+            <div class="card-simples">
+                <div class="card-icone">💡</div>
+                <h3>Dicas</h3>
+                <p>Conselhos práticos para estudar melhor e se organizar.</p>
             </div>
-            <div class="card">
-                <h3>📖 Histórias</h3>
-                <p>Além dos estudos, o Ensino Médio também é feito de momentos inesquecíveis, risadas e 
-            situações que ficam marcadas para sempre na memória. Aqui reunimos as histórias mais 
-            engraçadas e especiais vividas pela nossa turma ao longo desses anos — porque aprender 
-            também é sobre viver boas experiências!</p>
+            <div class="card-simples">
+                <div class="card-icone">📖</div>
+                <h3>Histórias</h3>
+                <p>Momentos inesquecíveis vividos pela nossa turma.</p>
             </div>
-            <div class="card">
-                <h3>🎤 Entrevistas</h3>
-                <p>Ninguém melhor para falar sobre os desafios e conquistas do Ensino Médio do que quem já 
-            trilhou esse caminho. Nesta seção, você vai conhecer relatos reais de alunos do 3º ano, professores,  
-             funcionários, ex alunos e entre outros que compartilham suas experiências, aprendizados e conselhos 
-             sinceros para quem está começando ou ainda está no meio dessa jornada.</p>
+            <div class="card-simples">
+                <div class="card-icone">🎤</div>
+                <h3>Entrevistas</h3>
+                <p>Relatos reais de alunos que já passaram por tudo isso.</p>
             </div>
         </div>
     </section>
 </main>
 
-<footer>
-    <p>💙 Feito com carinho pela turma para a turma — Ensino Médio 2026 💙</p>
+<footer class="site-footer">
+    <div class="footer-columns">
+        <div class="footer-col">
+            <h3>Sobre o projeto</h3>
+            <p>Um guia criado pela turma do 3º ano para ajudar colegas a atravessarem o Ensino Médio com mais leveza, organização e boas memórias.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Links rápidos</h3>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="dicas.html">Dicas</a></li>
+                <li><a href="historias.html">Histórias</a></li>
+                <li><a href="entrevistas.html">Entrevistas</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Créditos</h3>
+            <p>Feito com 💙 pela turma do 3º ano — Ensino Médio 2026, Colégio Dinâmico.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Manual de Sobrevivência ao Ensino Médio</p>
+    </div>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    const img = document.getElementById('imgTirinha');
+    const lightbox = document.getElementById('lightbox');
+    if (img && lightbox) {
+        img.addEventListener('click', () => lightbox.classList.add('aberto'));
+        lightbox.addEventListener('click', () => lightbox.classList.remove('aberto'));
+    }
+});
+</script>
 
 </body>
 </html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coisas que aprendemos na prática - Manual de Sobrevivência ao Ensino Médio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --azul-claro: #7ec8e3;
+    --azul-escuro: #1b3a57;
+    --branco: #ffffff;
+    --azul-medio: #4a90b8;
+    --bg-suave: #f4f9fc;
+    --texto: #2c3e4a;
+    --texto-suave: #6b7d8a;
+    --borda: #e2edf3;
+    --fonte-titulo: 'Merriweather', Georgia, serif;
+    --fonte-corpo: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--fonte-corpo); background-color: var(--bg-suave); color: var(--texto); line-height: 1.6; }
+a { color: inherit; }
+
+.topbar { background-color: var(--azul-escuro); color: rgba(255,255,255,0.85); font-size: 0.8rem; }
+.topbar-inner { max-width: 1100px; margin: 0 auto; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+.topbar-info { letter-spacing: 0.3px; }
+.topbar-home { text-decoration: none; color: var(--branco); font-weight: 600; font-size: 0.8rem; transition: opacity 0.25s ease; }
+.topbar-home:hover { opacity: 0.75; }
+
+.site-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); position: relative; overflow: hidden; }
+.site-header::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: repeating-linear-gradient(45deg, rgba(255,255,255,0.04), rgba(255,255,255,0.04) 10px, transparent 10px, transparent 20px); pointer-events: none; }
+.header-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 32px 20px 24px 20px; display: flex; align-items: center; gap: 18px; }
+
+.brand-logo-img { width: 64px; height: 64px; min-width: 64px; border-radius: 50%; object-fit: cover; background-color: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.5); box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
+
+.brand-text h1 { font-family: var(--fonte-titulo); font-size: 1.9rem; font-weight: 900; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); margin-bottom: 4px; }
+.brand-text p { font-size: 0.95rem; color: rgba(255,255,255,0.85); }
+
+.site-nav { position: relative; z-index: 1; background-color: rgba(0,0,0,0.12); display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 0 20px; }
+.nav-item { text-decoration: none; color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.92rem; padding: 14px 18px; position: relative; transition: color 0.25s ease; letter-spacing: 0.3px; }
+.nav-item::after { content: ""; position: absolute; bottom: 0; left: 50%; width: 0; height: 3px; background-color: var(--branco); transition: all 0.25s ease; transform: translateX(-50%); }
+.nav-item:hover { color: var(--branco); }
+.nav-item:hover::after { width: 60%; }
+.nav-item.ativo { color: var(--branco); }
+.nav-item.ativo::after { width: 60%; }
+
+.breadcrumb { max-width: 820px; margin: 22px auto 0 auto; padding: 0 20px; font-size: 0.85rem; color: var(--texto-suave); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.breadcrumb a { text-decoration: none; color: var(--azul-medio); font-weight: 600; transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--azul-escuro); }
+.breadcrumb .atual { color: var(--texto-suave); }
+
+.artigo-container { max-width: 820px; margin: 10px auto 60px auto; padding: 0 20px; }
+.artigo-box { background-color: var(--branco); border-radius: 18px; padding: 48px; box-shadow: 0 6px 30px rgba(27,58,87,0.08); }
+.artigo-categoria { display: inline-block; background-color: rgba(126,200,227,0.22); color: var(--azul-escuro); border: 1px solid var(--azul-claro); font-size: 0.72rem; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 18px; }
+.artigo-titulo { font-family: var(--fonte-titulo); font-size: 2.1rem; font-weight: 900; color: var(--azul-escuro); line-height: 1.3; margin-bottom: 14px; }
+.artigo-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; color: var(--texto-suave); font-size: 0.88rem; margin-bottom: 28px; }
+.artigo-meta-row .dot { color: var(--azul-claro); }
+
+.divisor { text-align: center; color: var(--azul-claro); font-size: 1.2rem; margin: 0 0 28px 0; position: relative; }
+.divisor::before, .divisor::after { content: ""; display: inline-block; width: 60px; height: 1px; background-color: var(--borda); vertical-align: middle; margin: 0 14px; }
+
+.artigo-intro { font-size: 1.12rem; color: #333; line-height: 1.85; margin-bottom: 36px; }
+
+.topico { margin-top: 38px; margin-bottom: 10px; }
+.topico-numero { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; min-width: 32px; background-color: var(--azul-escuro); color: var(--branco); border-radius: 50%; font-family: var(--fonte-titulo); font-weight: 700; font-size: 0.95rem; margin-right: 12px; }
+.topico-titulo { font-family: var(--fonte-titulo); font-size: 1.25rem; color: var(--azul-escuro); font-weight: 700; display: inline-flex; align-items: center; }
+.topico-texto { font-size: 1rem; color: #333; line-height: 1.8; margin-top: 12px; }
+.topico-texto p { margin-bottom: 14px; }
+
+.secao-final { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--borda); }
+.secao-final h2 { font-family: var(--fonte-titulo); font-size: 1.3rem; color: var(--azul-escuro); margin-bottom: 14px; }
+.secao-final p { font-size: 1rem; color: #333; line-height: 1.8; margin-bottom: 14px; }
+
+.moral { background-color: var(--bg-suave); padding: 20px 24px; border-radius: 10px; border-left: 4px solid var(--azul-medio); margin-top: 32px; font-size: 1.05rem; color: #333; }
+.moral strong { color: var(--azul-escuro); }
+
+.artigo-voltar { text-align: center; margin-top: 26px; }
+.artigo-voltar a { text-decoration: none; color: var(--azul-medio); font-weight: 600; font-size: 0.92rem; transition: color 0.25s ease; }
+.artigo-voltar a:hover { color: var(--azul-escuro); }
+
+.site-footer { background-color: var(--azul-escuro); color: rgba(255,255,255,0.85); margin-top: 60px; }
+.footer-columns { max-width: 1100px; margin: 0 auto; padding: 44px 20px 30px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+.footer-col h3 { font-family: var(--fonte-titulo); color: var(--branco); font-size: 1.05rem; margin-bottom: 14px; }
+.footer-col p { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 0.9rem; transition: color 0.25s ease; }
+.footer-col a:hover { color: var(--branco); }
+.footer-bottom { text-align: center; padding: 16px 20px; background-color: rgba(0,0,0,0.15); font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 700px) {
+    .header-inner { flex-direction: column; text-align: center; padding: 26px 20px 20px 20px; }
+    .brand-text h1 { font-size: 1.5rem; }
+    .artigo-box { padding: 26px; }
+    .artigo-titulo { font-size: 1.6rem; }
+    .topico-titulo { font-size: 1.1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        <span class="topbar-info">Colégio Dinâmico • 3º Ano • 2026</span>
+        <a href="index.html" class="topbar-home">🏠 Início</a>
+    </div>
+</div>
+
+<header class="site-header">
+    <div class="header-inner">
+        <img src="logo.jpg" alt="Logo" class="brand-logo-img">
+        <div class="brand-text">
+            <h1>Manual de Sobrevivência ao Ensino Médio</h1>
+            <p>Guia essencial para encarar (e sobreviver a) mais um ano letivo!</p>
+        </div>
+    </div>
+    <nav class="site-nav">
+        <a href="dicas.html" class="nav-item ativo">Dicas para o Ensino Médio</a>
+        <a href="historias.html" class="nav-item">Histórias da Turma</a>
+        <a href="entrevistas.html" class="nav-item">Entrevistas</a>
+    </nav>
+</header>
+
+<nav class="breadcrumb">
+    <a href="index.html">Início</a> <span>/</span> <a href="dicas.html">Dicas</a> <span>/</span> <span class="atual">Coisas que aprendemos na prática</span>
+</nav>
+
+<div class="artigo-container">
+    <div class="artigo-box reveal">
+
+        <span class="artigo-categoria">Reflexão</span>
+        <h1 class="artigo-titulo">Coisas que aprendemos na prática</h1>
+        <div class="artigo-meta-row">
+            <span>✍️ Turma do 3º ano</span><span class="dot">•</span>
+            <span>Colégio Dinâmico</span><span class="dot">•</span>
+            <span>⏱ 10 min de leitura</span>
+        </div>
+        <div class="divisor">✦</div>
+
+        <p class="artigo-intro">
+            A escola é muito mais do que um lugar onde aprendemos fórmulas de matemática, regras gramaticais
+            e datas históricas. É também onde descobrimos, muitas vezes na base do desespero, que a vida não
+            vem com gabarito e que nem tudo pode ser resolvido consultando um livro. Entre provas, trabalhos
+            em grupo, apresentações e convivência diária, aprendemos algumas lições que nenhum livro consegue
+            ensinar sozinho. E, podemos afirmar: o ensino médio ensina muito mais do que cai na prova!
+        </p>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">1</span>Mesmo estudando, nem sempre vamos bem</span>
+            <div class="topico-texto">
+                <p>
+                    Você passa dias estudando, faz resumos coloridos, assiste a videoaulas e chega à prova
+                    acreditando que está preparado. Então, recebe a nota e começa a questionar até as próprias
+                    escolhas de vida. Uma das lições mais difíceis é entender que, mesmo quando nos esforçamos,
+                    nem sempre conseguimos o resultado esperado. Isso não significa que somos incapazes ou que
+                    todo o esforço foi em vão. Às vezes, precisamos mudar a estratégia, aprender a lidar com a
+                    pressão ou simplesmente aceitar que errar também faz parte do processo. Afinal, uma nota não
+                    define nossa inteligência, muito menos nosso futuro.
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">2</span>Trabalhar em equipe nem sempre é tão fácil quanto parece</span>
+            <div class="topico-texto">
+                <p>
+                    Se existe uma experiência capaz de testar a paciência de um estudante, é o famoso trabalho
+                    em grupo. No papel, parece simples: cada pessoa faz uma parte e, no final, todos juntam tudo.
+                    Na prática, temos opiniões diferentes, horários incompatíveis e, em alguns casos, aquele
+                    integrante que só aparece para perguntar se já está pronto.
+                </p>
+                <p>
+                    Apesar dos desafios, esses trabalhos nos ensinam a dividir tarefas, cumprir combinados,
+                    colaborar e assumir responsabilidades. Também mostram que o resultado depende da participação
+                    de todos. Aprendemos que trabalhar em equipe não significa apenas juntar várias pessoas, mas
+                    saber cooperar para alcançar um objetivo em comum.
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">3</span>Nem todo mundo pensa como a gente, e tudo bem!</span>
+            <div class="topico-texto">
+                <p>
+                    Durante um trabalho, uma discussão em sala ou até uma simples conversa, percebemos que cada
+                    pessoa tem suas próprias ideias, experiências e maneiras de enxergar o mundo. E, por mais
+                    difícil que seja aceitar isso quando temos certeza absoluta de que nossa ideia é a melhor,
+                    nem sempre estamos certos.
+                </p>
+                <p>
+                    Lidar com opiniões diferentes exige respeito, paciência e disposição para ouvir. Isso não
+                    significa concordar com tudo, mas entender que podemos discordar sem transformar qualquer
+                    discussão em uma competição para descobrir quem está certo. Às vezes, inclusive, a ideia de
+                    outra pessoa pode melhorar completamente aquilo que tínhamos planejado.
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">4</span>Responsabilidade não é só entregar o trabalho no prazo</span>
+            <div class="topico-texto">
+                <p>
+                    Ser responsável vai muito além de lembrar a data da prova ou levar o material para a escola.
+                    Significa cumprir os compromissos assumidos, reconhecer os próprios erros e entender que
+                    nossas atitudes têm consequências.
+                </p>
+                <p>
+                    Quando esquecemos uma atividade, deixamos nossa parte do trabalho incompleta ou não cumprimos
+                    um combinado, percebemos que nossas escolhas também afetam outras pessoas. Aos poucos,
+                    aprendemos que não podemos depender sempre de alguém para nos lembrar do que precisamos fazer.
+                    E, infelizmente, o professor nem sempre vai aceitar a clássica desculpa de que "eu achei que
+                    era para a semana que vem".
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">5</span>Aprender a lidar com a frustração</span>
+            <div class="topico-texto">
+                <p>
+                    Nem sempre vamos tirar a nota que queríamos, participar do grupo que preferíamos ou conseguir
+                    realizar uma atividade da maneira que imaginávamos. E é justamente nessas situações que
+                    aprendemos a lidar com a frustração.
+                </p>
+                <p>
+                    A escola nos mostra que nem tudo acontece conforme nossos planos e que precisamos desenvolver
+                    a capacidade de enfrentar decepções sem desistir imediatamente. É normal ficar chateado quando
+                    algo dá errado, mas também é importante entender o que podemos aprender com aquela experiência.
+                </p>
+                <p>
+                    Com o tempo, percebemos que a frustração não precisa ser o fim de uma tentativa. Ela pode ser
+                    o começo de uma nova estratégia, de uma mudança de atitude ou de uma oportunidade de fazer
+                    diferente.
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">6</span>Administrar o tempo é praticamente uma habilidade de sobrevivência</span>
+            <div class="topico-texto">
+                <p>
+                    Prova na segunda, trabalho na quarta, apresentação na sexta e, no meio de tudo isso, outras
+                    responsabilidades esperando para serem resolvidas. De repente, as 24 horas do dia parecem
+                    insuficientes, e começamos a pensar que seria ótimo poder pausar o tempo.
+                </p>
+                <p>
+                    É nesse cenário que aprendemos a organizar horários, estabelecer prioridades e dividir tarefas
+                    maiores em etapas menores. Também descobrimos que deixar tudo para a última hora pode até
+                    funcionar ocasionalmente, mas dificilmente é uma estratégia que vale a pena repetir.
+                </p>
+                <p>
+                    Administrar o tempo não significa ocupar cada minuto com alguma obrigação. Significa encontrar
+                    um equilíbrio entre responsabilidades, descanso e lazer.
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">7</span>Construir relações faz parte do aprendizado</span>
+            <div class="topico-texto">
+                <p>
+                    A escola também é um espaço onde construímos amizades, conhecemos pessoas diferentes e
+                    aprendemos a conviver com personalidades que nem sempre combinam com a nossa.
+                </p>
+                <p>
+                    Nesse processo, descobrimos a importância de ouvir, respeitar limites, demonstrar empatia e
+                    conversar quando surgem desentendimentos. Aprendemos que nem todas as pessoas serão nossas
+                    amigas, e tudo bem, mas isso não significa que não possamos tratá-las com educação e respeito.
+                </p>
+                <p>
+                    Além disso, as relações que construímos podem tornar os dias difíceis mais leves. Uma conversa
+                    antes da prova, uma ajuda inesperada ou uma risada no intervalo podem fazer muito mais
+                    diferença do que imaginamos.
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">8</span>Viver em sociedade exige mais do que dividir o mesmo espaço</span>
+            <div class="topico-texto">
+                <p>
+                    Conviver na escola é uma pequena amostra do que significa viver em sociedade. Afinal,
+                    precisamos compartilhar ambientes, respeitar regras, considerar as necessidades dos outros e
+                    entender que nossas atitudes não afetam apenas a nós mesmos.
+                </p>
+                <p>
+                    Isso aparece nas situações mais simples: respeitar a vez de alguém falar, cuidar dos espaços
+                    coletivos, ouvir opiniões diferentes e reconhecer quando ultrapassamos algum limite. São
+                    atitudes que parecem pequenas, mas fazem diferença na construção de um ambiente mais
+                    respeitoso.
+                </p>
+                <p>
+                    A escola nos ensina, na prática, que viver em sociedade não significa que todos precisam
+                    pensar da mesma maneira. Significa aprender a conviver apesar das diferenças, reconhecendo
+                    que cada pessoa tem seu espaço e suas responsabilidades.
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">9</span>Perseverança: continuar mesmo quando fica difícil</span>
+            <div class="topico-texto">
+                <p>
+                    Em algum momento, todos nós já pensamos em desistir de alguma coisa porque parecia difícil
+                    demais. Pode ser uma matéria que não entra na cabeça, um trabalho que não sai como planejado
+                    ou uma atividade que exige muito mais esforço do que imaginávamos.
+                </p>
+                <p>
+                    Nessas horas, aprendemos que perseverar não significa nunca sentir vontade de desistir, mas
+                    encontrar maneiras de continuar mesmo diante das dificuldades. Isso também envolve reconhecer
+                    quando precisamos descansar, mudar de estratégia ou pedir ajuda.
+                </p>
+                <p>
+                    Afinal, nem sempre o sucesso vem na primeira tentativa. Às vezes, precisamos errar, recomeçar
+                    e tentar novamente até percebermos que somos capazes de fazer algo que antes parecia
+                    impossível.
+                </p>
+            </div>
+        </div>
+
+        <div class="topico">
+            <span class="topico-titulo"><span class="topico-numero">10</span>Aprender a ouvir críticas e reconhecer os próprios erros</span>
+            <div class="topico-texto">
+                <p>
+                    Receber uma correção no trabalho ou ouvir que precisamos melhorar em alguma coisa nem sempre
+                    é agradável. A primeira reação pode ser ficar na defensiva, especialmente quando acreditamos
+                    que fizemos o nosso melhor.
+                </p>
+                <p>
+                    Entretanto, a escola nos oferece oportunidades para aprender a diferenciar uma crítica
+                    construtiva de uma ofensa e entender que reconhecer um erro não diminui nossas qualidades.
+                    Pelo contrário, permite que identifiquemos o que podemos melhorar.
+                </p>
+                <p>
+                    Também aprendemos que admitir que estamos errados exige maturidade. Nem sempre precisamos ter
+                    a última palavra, e mudar de opinião quando percebemos que estávamos equivocados pode ser um
+                    sinal de aprendizado.
+                </p>
+            </div>
+        </div>
+
+        <div class="secao-final">
+            <h2>No final das contas…</h2>
+            <p>
+                Entre uma prova difícil, um trabalho em grupo que quase virou uma reunião de condomínio e uma
+                apresentação que nos fez questionar nossa capacidade de falar em público, percebemos que a
+                escola ensina muito além dos conteúdos das disciplinas. Ela nos prepara para lidar com situações
+                que fazem parte da vida: trabalhar com outras pessoas, administrar responsabilidades, enfrentar
+                frustrações, respeitar diferenças e continuar tentando mesmo quando as coisas não saem como
+                planejamos.
+            </p>
+            <p>
+                Nem sempre vamos perceber essas lições enquanto estamos vivendo cada situação. Às vezes, só
+                entendemos o que aprendemos depois que tudo passa. E talvez seja justamente esse o ponto: a
+                escola não nos ensina apenas a encontrar respostas, mas também a lidar com as situações para as
+                quais não existe um gabarito.
+            </p>
+            <p>
+                No fim, podemos até esquecer uma fórmula ou outra data histórica, mas as experiências que
+                vivemos, os erros que cometemos e as pessoas que conhecemos também fazem parte da nossa
+                formação.
+            </p>
+        </div>
+
+        <div class="moral">
+            <strong>E se tem uma coisa que o ensino médio está nos ensinando</strong>, é que crescer dá
+            trabalho e, infelizmente, não existe recuperação para todas as situações da vida. 💙
+        </div>
+
+    </div>
+
+    <div class="artigo-voltar">
+        <a href="dicas.html">← Voltar para Dicas</a>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-columns">
+        <div class="footer-col">
+            <h3>Sobre o projeto</h3>
+            <p>Um guia criado pela turma do 3º ano para ajudar colegas a atravessarem o Ensino Médio com mais leveza, organização e boas memórias.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Links rápidos</h3>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="dicas.html">Dicas</a></li>
+                <li><a href="historias.html">Histórias</a></li>
+                <li><a href="entrevistas.html">Entrevistas</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Créditos</h3>
+            <p>Feito com 💙 pela turma do 3º ano — Ensino Médio 2026, Colégio Dinâmico.</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Manual de Sobrevivência ao Ensino Médio</p>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>
